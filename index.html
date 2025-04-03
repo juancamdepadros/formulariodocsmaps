@@ -43,6 +43,7 @@
                 </div>
 
                 <!-- Step 3 -->
+                <div class="consultorio">
                 <div class="step" id="step3">
                     <h3 id="titulo-consultorio">Datos Consultorio</h3>
                     <div id="step-3-container">
@@ -60,7 +61,7 @@
                     <button type="button" onclick="prevStep(3)">Atrás</button>
                     <button type="button" onclick="nextStep(3)">Continuar</button>
                 </div>
-                
+                </div>
 
                 <!-- Step 4 -->
                 <div class="step" id="step4">
@@ -79,7 +80,7 @@
 
     <script>
      document.addEventListener("DOMContentLoaded", function () {
-     document.getElementById('multiStepForm').addEventListener('submit', async function (e) {
+    document.getElementById('multiStepForm').addEventListener('submit', async function (e) {
         e.preventDefault();
 
         const formData = new FormData(this);
@@ -87,20 +88,21 @@
 
         let consultorios = [];
         document.querySelectorAll('.consultorio').forEach((consultorio, index) => {
-            const pais = consultorio.querySelector('[name="pais"]').value;
-            const estado = consultorio.querySelector('[name="estado"]').value;
-            const calle = consultorio.querySelector('[name="calle"]').value;
-            const numero = consultorio.querySelector('[name="numero"]').value;
-            const codigo_postal = consultorio.querySelector('[name="codigo_postal"]').value;
- 
-            if (pais && estado && calle && numero && codigo_postal) {
+            const pais = consultorio.querySelector('input[name="pais"]')?.value.trim();
+            const estado = consultorio.querySelector('input[name="estado"]')?.value.trim();
+            const calle = consultorio.querySelector('input[name="calle"]')?.value.trim();
+            const numero = consultorio.querySelector('input[name="numero"]')?.value.trim();
+            const codigo_postal = consultorio.querySelector('input[name="codigo_postal"]')?.value.trim();
+
+            // Solo agregar si hay datos
+            if (pais || estado || calle || numero || codigo_postal) {
                 consultorios.push({ pais, estado, calle, numero, codigo_postal });
             }
         });
 
-        jsonData.consultorios = consultorios; 
+        jsonData.consultorios = consultorios;
 
-        console.log('Datos enviados:', jsonData); 
+        console.log('📩 Datos enviados:', jsonData); // pa fijarme que se están enviando correctamente
 
         const response = await fetch('http://localhost:3000/send-email', {
             method: 'POST',
@@ -112,7 +114,7 @@
         alert(result.message);
     });
 });
-
+                                            //este código está recopilando correctamente los datos de los consultorios en el frontend ;)
     </script>
 </body>
 </html>
