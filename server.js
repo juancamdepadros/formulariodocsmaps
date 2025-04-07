@@ -21,11 +21,11 @@ const transporter = nodemailer.createTransport({
 app.post('/send-email', async (req, res) => {
     console.log('🔹 Headers:', req.headers);  
     console.log('🔹 Body recibido:', JSON.stringify(req.body, null, 2));  
-    const { nombre, apellido, email, telefono, especialidad, profesion, estudio, horarios, pais, estado, calle, numero, codigo_postal, mensaje, consultorios } = req.body;
+    const { nombre, apellido, email, telefono, redes, especialidad, profesion, estudio, horarios, pais, estado, calle, numero, codigo_postal, mensaje, proexp, consultorios } = req.body;
 
     const listaConsultorios = Array.isArray(consultorios) ? consultorios : [];
 
-    if (!nombre || !apellido || !email || !telefono || !especialidad || !profesion || !estudio || !horarios || !pais || !estado || !calle || !numero || !codigo_postal || !mensaje) {
+    if (!nombre || !apellido || !email || !telefono || !redes || !especialidad || !profesion || !estudio || !horarios || !pais || !estado || !calle || !numero || !codigo_postal || !mensaje || !proexp) {
         console.log('❌ ERROR: El body está vacío o con undefined');
         return res.status(400).json({ message: 'Datos incompletos' });
     }
@@ -39,9 +39,11 @@ app.post('/send-email', async (req, res) => {
        🔹 Apellido: ${apellido}
        🔹 Correo electrónico: ${email}
        🔹 Teléfono/Celular: ${telefono}
+       🔹 Redes Sociales: ${redes}
        🔹 Especialidad: ${especialidad}
        🔹 Profesión: ${profesion}
        🔹 Universidad: ${estudio}
+       🔹 Experiencia Profesional: ${proexp}
        🔹 Mensaje: ${mensaje}
     `;
 
