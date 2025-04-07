@@ -57,7 +57,7 @@ app.post('/send-email', async (req, res) => {
         🔹 País: ${consultorio.pais || 'No especificado'}
         🔹 Estado/Provincia: ${consultorio.estado || 'No especificado'}
         🔹 Calle: ${consultorio.calle || 'No especificado'} - Número: ${consultorio.numero || 'No especificado'}
-        🔹 Código Postal: ${consultorio.codigo_postal || 'No especificado'}
+        🔹 Código Postal: ${consultorio.codigoPostal || 'No especificado'} 
         `;
     });
 
