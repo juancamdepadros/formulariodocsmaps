@@ -41,7 +41,7 @@ app.post('/send-email', async (req, res) => {
        🔹 Teléfono/Celular: ${telefono}
        🔹 Especialidad: ${especialidad}
        🔹 Profesión: ${profesion}
-       🔹 ¿Dónde estudiaste?: ${estudio}
+       🔹 Universidad: ${estudio}
        🔹 Mensaje: ${mensaje}
     `;
 
