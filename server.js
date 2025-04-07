@@ -33,32 +33,24 @@ app.post('/send-email', async (req, res) => {
     console.log('✅ Datos de los consultorios recibidos:', listaConsultorios);
 
     let mailText = `
-    📩 Nuevo mensaje de contacto
+       📩 Nuevo mensaje de contacto
     
-    🔹 Nombre: ${nombre}
-    🔹 Apellido: ${apellido}
-    🔹 Correo electrónico: ${email}
-    🔹 Teléfono/Celular: ${telefono}
-    🔹 Especialidad: ${especialidad}
-    🔹 Profesión: ${profesion}
-    🔹 ¿Dónde estudiaste?: ${estudio}
-    🔹 Mensaje: ${mensaje}
+       🔹 Nombre: ${nombre}
+       🔹 Apellido: ${apellido}
+       🔹 Correo electrónico: ${email}
+       🔹 Teléfono/Celular: ${telefono}
+       🔹 Especialidad: ${especialidad}
+       🔹 Profesión: ${profesion}
+       🔹 ¿Dónde estudiaste?: ${estudio}
+       🔹 Mensaje: ${mensaje}
     `;
 
-    // Primer consultorio, siempre presente pa
-    mailText += `
-    🏥 Consultorio 1:
-    🔹 Horarios: ${horarios}
-    🔹 País: ${pais}
-    🔹 Estado/Provincia: ${estado}
-    🔹 Calle: ${calle} - Número: ${numero}
-    🔹 Código Postal: ${codigo_postal}
-    `;
+    // ASI PROLIJITO PAPAAAAAA
 
     // Consultorios adicionales (no se bugeen nunca plis)
     listaConsultorios.forEach((consultorio, index) => {
         mailText += `
-        🏥 Consultorio ${index + 2}:  // Para empezar desde el consultorio 2
+        🏥 Consultorio ${index + 1}:  
         🔹 Horarios: ${consultorio.horarios || 'No especificado'}
         🔹 País: ${consultorio.pais || 'No especificado'}
         🔹 Estado/Provincia: ${consultorio.estado || 'No especificado'}
@@ -87,4 +79,4 @@ app.post('/send-email', async (req, res) => {
 
 app.listen(3000, () => {
     console.log('Servidor corriendo en http://localhost:3000');
-});3
+});

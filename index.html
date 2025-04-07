@@ -80,27 +80,22 @@
 
     <script>
      document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById('multiStepForm').addEventListener('submit', async function (e) {
+     document.getElementById('multiStepForm').addEventListener('submit', async function (e) {
         e.preventDefault();
 
         const formData = new FormData(this);
         let jsonData = Object.fromEntries(formData.entries());
 
-        let consultorios = [];
-        document.querySelectorAll('.consultorio').forEach((consultorio, index) => {
-            const pais = consultorio.querySelector('input[name="pais"]')?.value.trim();
-            const estado = consultorio.querySelector('input[name="estado"]')?.value.trim();
-            const calle = consultorio.querySelector('input[name="calle"]')?.value.trim();
-            const numero = consultorio.querySelector('input[name="numero"]')?.value.trim();
-            const codigo_postal = consultorio.querySelector('input[name="codigo_postal"]')?.value.trim();
+    // Antes de enviar, guardamos los datos del último consultorio en pantalla
+    saveConsultorioData(currentConsultorio);
 
-            // Solo agregar si hay datos
-            if (pais || estado || calle || numero || codigo_postal) {
-                consultorios.push({ pais, estado, calle, numero, codigo_postal });
-            }
-        });
+    // Convertimos consultorioData (objeto) a array ordenado
+    const consultorios = Object.keys(consultorioData)
+    .sort((a, b) => a - b)
+    .map(key => consultorioData[key]);
 
-        jsonData.consultorios = consultorios;
+    jsonData.consultorios = consultorios;
+
 
         console.log('📩 Datos enviados:', jsonData); // pa fijarme que se están enviando correctamente
 

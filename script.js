@@ -1,7 +1,7 @@
 let currentStep = 1;
 let currentConsultorio = 1;
 let totalConsultorios = 1;
-const consultorioData = {}; 
+let consultorioData = {}; 
 
 function showStep(step) {
     document.querySelectorAll('.step').forEach((el) => el.classList.remove('active'));
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         
         currentConsultorio = 1;
-        consultorioData[1] = {};
+        consultorioData = {};
         loadConsultorioData(1);
     });
 });
